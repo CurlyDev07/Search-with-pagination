@@ -1,0 +1,18 @@
+ public function show(){
+
+        $search = request()->search;
+        $post= '';
+        if ($search != '') {
+
+            $post = Post::where('title', "LIKE", '%'.$search.'%')->paginate(5)->setpath('');
+            $post->appends(array(
+                'search' => request()->search,
+            ));
+            
+            if (count($post) > 0) {
+
+                return view('pages.search_result', compact('post'));
+            }
+            return view('pages.search_result')->withMessage('No results found!');
+        }
+    }
