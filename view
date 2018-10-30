@@ -1,0 +1,12 @@
+   {!! $post->render() !!}
+
+    @isset($post)
+        
+        @foreach ($post as $posts)
+
+            {{ $posts->title }} <br>
+
+        @endforeach
+    @else
+        {{ $message }}
+    @endisset
